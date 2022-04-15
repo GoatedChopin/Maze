@@ -23,7 +23,7 @@ class maze:
             return stack
         else:
             stack.pop()
-            self.step(stack)
+            return self.step(stack)
                 
     def build(self):
         self.reset()
