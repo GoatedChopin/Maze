@@ -2,6 +2,8 @@ import numpy as np
 import random as r
 import time as t
 from PIL import Image, ImageDraw
+import os
+from datetime import datetime as dt
 import matplotlib.pyplot as plt
 
 class maze:
@@ -39,7 +41,7 @@ class maze:
             stack.pop()
             return self.step(stack)
                 
-    def build(self, steptime = 0, show = True):
+    def build(self, steptime = 0, show = True, save = None):
         point = self.pick_initial_point()
         stack = [point]
         while stack != -1:
@@ -52,6 +54,9 @@ class maze:
         imgplot = plt.imshow(self.im)
         plt.axis('off')
         plt.show()
+        if save != None:
+            # os.getcwd() + os.sep + "mazes" + os.sep + 
+            self.im.save("mazes" + os.sep + save + ".png")
         
     def pick_initial_point(self):
         dirs = ["top", "right", "bottom", "left"]
@@ -102,11 +107,12 @@ class maze:
 
         
 if __name__ == "__main__":
-    m = maze(rows = 100,
-             cols = 100,
+    m = maze(rows = 10,
+             cols = 10,
              node_width = 10,
              node_height = 10,
              path_width = 0.6,
              path_height = 0.6)
     m.build(steptime = 0,
-            show = False)
+            show = False,
+            save = "Trial1")
